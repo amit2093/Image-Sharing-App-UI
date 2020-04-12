@@ -1,0 +1,27 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container">
+    <br>
+    <div class="col-md-5" style="float: left">
+        <form #docsUpload='ngForm' (submit)="uploadDocs(docsUpload)">
+            <h2 class="text-center">Upload Documents</h2>
+            <br />
+            <div class="form-group">
+                <input #file type="file" accept='image/*' (change)="previewFile(file.files)" />
+                <img [src]="imgURL" style="width: 150px; height: 150px;" *ngIf="imgURL">
+            </div>
+            <div class="form-group">
+            </div>
+            <br>
+            <input type="text" required class="form-control" id="f_fileName" [(ngModel)]="docsUpload.fileName"
+                #password="ngModel" placeholder="File Name" name="fileName" ngModel>
+            <br>
+            <input type="text" required class="form-control" id="description" [(ngModel)]="docsUpload.description"
+                #password="ngModel" width="48" height="48" placeholder="Image description" name="description" ngModel>
+            <br>
+            <div class="align-center">
+                <button type="submit" class="btn btn-info" id="login">Upload</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="row">
+    <div class="col-md-8">
+        <table border="1" style="margin-left: 150px; margin-top: 80px;">
+            <tr class="text-center"><img src={{selectedImage.image}} style="width: 550px; height:300px;"></tr>
+            <tr class="text-center"><strong>{{ selectedImage.imageName }}</strong></tr>
+            <tr class="text-center">
+                <p style="max-width: 550px;">{{ selectedImage.description }}</p>
+            </tr>
+            <tr>
+                <i class="fas fa-share" style="float: right;margin-top: -40px; margin-right: 50px;"
+                    (click)="shareImage(selectedImage)" data-toggle="modal" data-target="#myModal"></i>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-md-4">
+        <div class="md-6" style="float: right; width: 500px; margin-right: 25px; padding-right: 25px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>My TimeLine</h4>
+                    <ul class="timeline">
+                        <li *ngFor="let data of getAllFilesByLoggedInUser">
+                            <strong target="_blank">{{ data.imageName}}</strong>
+                            <p>{{ data.description }}</p>
+                            <img src={{data.image}} style="width: 200px; height: 100px;" (click)="showImage(data)">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">All User</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr *ngFor="let user of getAllRegisteredUsers">
+                                    <td>{{user.name}}</td>
+                                    <td><input type="button" style="float: right;" class="btn btn-info"
+                                            (click)="shareImageTo(user)" value="Share" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
